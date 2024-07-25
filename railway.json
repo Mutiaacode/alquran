@@ -6,7 +6,7 @@
         "command": "npm ci && npm run build"
       },
       "start": {
-        "command": "npm start"
+        "command": "npx http-server dist"
       }
     }
   }
