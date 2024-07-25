@@ -1,3 +1,13 @@
 {
-  "build": "npm install && npm run build"
+  "services": {
+    "web": {
+      "build": {
+        "builder": "npm",
+        "command": "npm install && npm run build"
+      },
+      "start": {
+        "command": "npm start"
+      }
+    }
+  }
 }
