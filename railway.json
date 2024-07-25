@@ -3,7 +3,7 @@
     "web": {
       "build": {
         "builder": "npm",
-        "command": "npm install && npm run build"
+        "command": "npm ci && npm run build"
       },
       "start": {
         "command": "npm start"
