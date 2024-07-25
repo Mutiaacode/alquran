@@ -3,10 +3,10 @@
     "web": {
       "build": {
         "builder": "npm",
-        "command": "npm ci && npm run build"
+        "command": "npm ci && npm run build && npx update-browserslist-db@latest"
       },
       "start": {
-        "command": "npm start"
+        "command": "npx http-server dist"  
       }
     }
   }
