@@ -1,26 +1,30 @@
 <template>
-    <!-- card -->
     <div class="container mb-5">
-        <!-- CARD -->
-        <!-- <div class="row">
-            <div class="col-md-4 col-12" v-for="(surah, index) in quran" :key="index">
-                <router-link :to="{ name: 'surah', params: { id: surah.nomor } }"
-                    class="text-decoration-none text-dark">
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <h2 class="float-end"> {{ surah.nama }} </h2>
-                            <h5 class="card-title nama-latin"> {{ index + 1 }}. {{ surah.nama_latin }}
-                                <small>({{ surah.jumlah_ayat }} ayat)</small>
-                            </h5>
-                            <p class="card-text">{{ surah.arti }}</p>
-                        </div>
-                    </div>
-                </router-link>
+        <div v-if="isLoading" class="text-center mt-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-        </div> -->
-        <!-- END CARD -->
+            <p>Loading data...</p>
+        </div>
+        <div v-else>
+            <div class="row">
+                <div class="col-md-4 col-12" v-for="(surah, index) in quran" :key="index">
+                    <router-link :to="{ name: 'surah', params: { id: surah.nomor } }"
+                        class="text-decoration-none text-dark">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <h2 class="float-end"> {{ surah.nama }} </h2>
+                                <h5 class="card-title nama-latin"> {{ index + 1 }}. {{ surah.nama_latin }}
+                                    <small>({{ surah.jumlah_ayat }} ayat)</small>
+                                </h5>
+                                <p class="card-text">{{ surah.arti }}</p>
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- card -->
 </template>
 
 <script>
@@ -29,23 +33,25 @@ import { ref } from 'vue'
 
 export default {
     name: 'SurahVue',
-    components: {},
-    async setup() {
+    setup() {
         const quran = ref([])
+        const isLoading = ref(true)
 
-        await new Promise(resolve => setTimeout(resolve, 5000));
-
-        // fetch data menggunakan axios
-        await axios.get('https://api-quran-id.herokuapp.com/juz')
+        // Fetch data using axios
+        axios.get('https://api-quran-id.herokuapp.com/juz')
             .then(res => {
                 quran.value = res.data
-                console.log(quran.value)
-            }).catch(err => {
-                console.log(err.res.data)
+            })
+            .catch(err => {
+                console.error('Error fetching data:', err)
+            })
+            .finally(() => {
+                isLoading.value = false
             })
 
         return {
-            quran
+            quran,
+            isLoading
         }
     },
 }
@@ -60,5 +66,10 @@ export default {
 
 h5.nama-latin {
     font-weight: 700;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
 }
 </style>
