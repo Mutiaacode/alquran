@@ -1,6 +1,6 @@
 <template>
     <main class="container mt-custom">
-        <div class="bg-success p-4 rounded shadow text-white">
+        <div class="bg-dark p-4 rounded shadow text-white">
             <h1 class="float-end">
                 <AnimatedPlaceholder width="110px" height="6px" borderRadius="5px" />
             </h1>
