@@ -49,10 +49,10 @@ body {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: #198754;
+    background-color: #ffc107;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #005f33;
+    background-color: #ffc107;
 }
 </style>
