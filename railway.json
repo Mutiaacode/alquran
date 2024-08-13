@@ -1,13 +1,1 @@
-{
-  "services": {
-    "web": {
-      "build": {
-        "builder": "npm",
-        "command": "npm ci && npm run build"
-      },
-      "start": {
-        "command": "npx http-server dist"
-      }
-    }
-  }
-}
+
